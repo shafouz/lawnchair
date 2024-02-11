@@ -90,15 +90,18 @@ import com.android.launcher3.views.RecyclerViewFastScroller;
 import com.android.launcher3.views.ScrimView;
 import com.android.launcher3.views.SpringRelativeLayout;
 import com.android.launcher3.workprofile.PersonalWorkSlidingTabStrip;
+import com.patrykmichalik.opto.core.PreferenceExtensionsKt;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 import app.lawnchair.allapps.LawnchairAlphabeticalAppsList;
 import app.lawnchair.font.FontManager;
+import app.lawnchair.preferences2.PreferenceManager2;
 import app.lawnchair.theme.color.ColorTokens;
 import app.lawnchair.ui.StretchRecyclerViewContainer;
 
@@ -497,6 +500,12 @@ public class ActivityAllAppsContainerView<T extends Context & ActivityContext>
         }
         if (isSearching()) {
             mWorkManager.reset();
+        }
+        
+        PreferenceManager2 prefs2 = PreferenceManager2.getInstance(getContext());
+        if (PreferenceExtensionsKt.firstBlocking(prefs2.getEnableDrawerShuffle())) {
+            Collections.shuffle(getActiveRecyclerView().getApps().getAdapterItems());
+            getActiveRecyclerView().getAdapter().notifyDataSetChanged();
         }
     }
 

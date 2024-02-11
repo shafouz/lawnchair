@@ -376,16 +376,6 @@ public class AllAppsTransitionController
                     mLauncher.getAppsView().getSearchUiManager().getEditText().hideKeyboard();
                 }
                 
-                List<BaseAllAppsAdapter.AdapterItem> l = mLauncher.getAppsView().getActiveRecyclerView().getApps().getAdapterItems();
-                for (BaseAllAppsAdapter.AdapterItem adapterItem : l) {
-                    Log.d("BEFORE", String.valueOf(adapterItem.itemInfo));
-                }
-                Collections.shuffle(l);
-                for (BaseAllAppsAdapter.AdapterItem adapterItem : l) {
-                    Log.d("AFTER", String.valueOf(adapterItem.itemInfo));
-                }
-                mLauncher.getAppsView().getActiveRecyclerView().getAdapter().notifyDataSetChanged();
-                
                 mAllAppScale.updateValue(1f);
             });
         }

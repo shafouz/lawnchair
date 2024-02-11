@@ -278,6 +278,12 @@ fun AppDrawerPreferences() {
                 step = 0.01F,
                 showAsPercentage = true,
             )
+            SwitchPreference(
+                adapter = prefs2.enableDrawerShuffle.getAdapter(),
+                label = stringResource(
+                    id = R.string.shuffle_drawer,
+                ),
+            )
         }
         PreferenceGroup(heading = stringResource(id = R.string.icons)) {
             SliderPreference(

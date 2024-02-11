@@ -417,6 +417,11 @@ class PreferenceManager2 private constructor(private val context: Context) : Pre
         defaultValue = context.resources.getBoolean(R.bool.config_default_enable_feed),
     )
 
+    val enableDrawerShuffle = preference(
+        key = booleanPreferencesKey(name = "enable_drawer_shuffle"),
+        defaultValue = context.resources.getBoolean(R.bool.config_default_enable_drawer_feed),
+    )
+
     val showComponentNames = preference(
         key = booleanPreferencesKey(name = "show_component_names"),
         defaultValue = context.resources.getBoolean(R.bool.config_default_show_component_names),
