@@ -19,3 +19,5 @@ __pycache__
 .vscode
 .fleet
 lawnWithQuickstep/release
+*.xml
+.settings

@@ -37,6 +37,7 @@ import android.animation.Animator.AnimatorListener;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.util.FloatProperty;
+import android.util.Log;
 import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,6 +69,9 @@ import com.android.launcher3.util.ScrollableLayoutManager;
 import com.android.launcher3.util.Themes;
 import com.android.launcher3.util.VibratorWrapper;
 import com.android.launcher3.views.ScrimView;
+
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Handles AllApps view transition.
@@ -371,7 +375,17 @@ public class AllAppsTransitionController
                 if (config.userControlled && success && mShouldControlKeyboard) {
                     mLauncher.getAppsView().getSearchUiManager().getEditText().hideKeyboard();
                 }
-
+                
+                List<BaseAllAppsAdapter.AdapterItem> l = mLauncher.getAppsView().getActiveRecyclerView().getApps().getAdapterItems();
+                for (BaseAllAppsAdapter.AdapterItem adapterItem : l) {
+                    Log.d("BEFORE", String.valueOf(adapterItem.itemInfo));
+                }
+                Collections.shuffle(l);
+                for (BaseAllAppsAdapter.AdapterItem adapterItem : l) {
+                    Log.d("AFTER", String.valueOf(adapterItem.itemInfo));
+                }
+                mLauncher.getAppsView().getActiveRecyclerView().getAdapter().notifyDataSetChanged();
+                
                 mAllAppScale.updateValue(1f);
             });
         }
